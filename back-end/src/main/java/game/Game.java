@@ -44,6 +44,21 @@ public class Game {
         return this.history;
     }
 
+    public boolean isDraw() {
+        // If there's a winner, it's not a draw
+        if (getWinner() != null) return false;
+        
+        // Check if all cells are filled
+        for (int x = 0; x < 3; x++) {
+            for (int y = 0; y < 3; y++) {
+                if (board.getCell(x, y) == null) {
+                    return false; // Found empty cell
+                }
+            }
+        }
+        return true; // All cells filled
+    }
+
     public Game play(int x, int y) {
         if (this.board.getCell(x, y) != null)
             return this;

@@ -3,6 +3,8 @@ Either run the Java backend by using your IDE or by typing
 
 ```
 mvn install
+netstat -ano | findstr :8080
+taskkill /PID 20732 /F
 mvn exec:exec
 ```
 in the back-end folder. This will start the Java server at http://localhost:8080.

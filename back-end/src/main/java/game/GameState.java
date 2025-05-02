@@ -6,11 +6,13 @@ public class GameState {
     private final Cell[] cells;
     private final String currentPlayer;
     private final String winner;
+    private final boolean isDraw;
 
-    private GameState(Cell[] cells, String currentPlayer, String winner) {
+    private GameState(Cell[] cells, String currentPlayer, String winner, boolean isDraw) {
         this.cells = cells;
         this.currentPlayer = currentPlayer;
         this.winner = winner;
+        this.isDraw = isDraw;
     }
 
     public static GameState forGame(Game game) {
@@ -18,7 +20,12 @@ public class GameState {
         String currentPlayer = game.getPlayer() == Player.PLAYER0 ? "X" : "O";
         Player winner = game.getWinner();
         String winnerText = winner == null ? "" : (winner == Player.PLAYER0 ? "X" : "O") + " wins!";
-        return new GameState(cells, currentPlayer, winnerText);
+        boolean isDraw = game.isDraw();
+        return new GameState(cells, currentPlayer, winnerText, isDraw);
+    }
+
+    public boolean isDraw() {
+        return isDraw;
     }
 
     public Cell[] getCells() {
@@ -33,16 +40,21 @@ public class GameState {
         return winner;
     }
 
+    
+
     @Override
     public String toString() {
         return """
                 {
                     "cells": %s,
                     "currentPlayer": "%s",
-                    "winner": "%s"
+                    "winner": "%s",
+                    "isDraw": %b
                 }
-                """.formatted(Arrays.toString(this.cells), this.currentPlayer, this.winner);
+                """.formatted(Arrays.toString(this.cells), this.currentPlayer, this.winner, this.isDraw);
     }
+
+    
 
     private static Cell[] getCells(Game game) {
         Cell cells[] = new Cell[9];

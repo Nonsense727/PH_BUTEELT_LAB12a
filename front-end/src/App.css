@@ -45,3 +45,51 @@ body {
 }
 
 .playable { background-color: red;}
+
+/* Celebration styles */
+.celebration {
+  animation: celebrate 2s infinite;
+  color: #ff5722;
+  text-align: center;
+}
+
+@keyframes celebrate {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Make the winner message more prominent */
+#instructions h2 {
+  font-size: 2em;
+  margin: 0;
+  color: #4caf50;
+}
+
+#instructions p {
+  font-size: 1.2em;
+  margin: 5px 0 0;
+}
+
+/* Draw message styles */
+.draw-message {
+  text-align: center;
+  color: #666;
+  animation: pulse 1.5s infinite;
+}
+
+.draw-message h2 {
+  font-size: 1.8em;
+  margin: 0;
+}
+
+.draw-message p {
+  font-size: 1.1em;
+  margin: 5px 0 0;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
