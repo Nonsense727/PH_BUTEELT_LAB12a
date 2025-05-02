@@ -23,7 +23,7 @@ public class Game {
     }
 
     public Game(Board board, Player nextPlayer) {
-        this(board, nextPlayer, List.of());
+        this(board, nextPlayer, new ArrayList<>());
     }
 
     public Game(Board board, Player nextPlayer, List<Game> history) {
@@ -38,6 +38,10 @@ public class Game {
 
     public Player getPlayer() {
         return this.player;
+    }
+
+    public List<Game> getHistory() {
+        return this.history;
     }
 
     public Game play(int x, int y) {
@@ -67,5 +71,12 @@ public class Game {
                 && board.getCell(1, 1) == board.getCell(2, 0))
             return board.getCell(1, 1);
         return null;
+    }
+
+    public Game undo() {
+        if (this.history.isEmpty()) {
+            return this;
+        }
+        return this.history.get(this.history.size() - 1);
     }
 }
